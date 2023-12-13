@@ -4,6 +4,7 @@ if(isset($_SERVER['REQUEST_METHOD']) == 'post'){
 	$gender = isset($_POST['gender'])? $_POST['gender'] : 'unset';
 	$subscribe = $_POST['subscribe']? 'yes' : 'no';
 	$date = isset($_POST['date'])? $_POST['date'] : 'unset';
+	$time = isset($_POST['time'])? $_POST['time'] : 'unset';
 	$country = isset($_POST['countries'])? $_POST['countries'] : 'no';
 	$hobbies = !empty($_POST['interests'])?  $_POST['interests'] : [];
 	$language = !empty($_POST['lang'])?  $_POST['lang'] : [];
@@ -58,6 +59,14 @@ if(isset($_SERVER['REQUEST_METHOD']) == 'post'){
 			<div class="date">
 			<label for="date" class=" text-sm font-medium text-gray-600">Pick Date</label>
 			<input type="text" name="date" id="date" class="border rounded-md" value="<?= $date ?>">
+			</div>
+
+
+
+			<!-- Time Picker -->
+			<div class="time">
+			<label for="time" class=" text-sm font-medium text-gray-600">Pick time</label>
+			<input type="text" name="time" id="time" class="border rounded-md" value="<?= $time ?>">
 			</div>
 
 
@@ -121,6 +130,7 @@ if(isset($_SERVER['REQUEST_METHOD']) == 'post'){
 			<p><strong>Gender:-</strong> <i><?=$gender?></i></p>
 			<p><strong>Subscribed:-</strong> <i><?=$subscribe?></i></p>
 			<p><strong>Date:-</strong> <i><?=$date?></i></p>
+			<p><strong>Date:-</strong> <i><?=$time?></i></p>
 			<p><strong>Country:-</strong> <i><?=strtoupper($country)?></i></p>
 			<p><strong>Programming Languages:-</strong> <i><?=strtoupper(implode(', ',$language))?></i></p>
 			<p><strong>Hobbies:-</strong> <i><?=strtoupper(implode(', ',$hobbies))?></i></p>
@@ -128,6 +138,11 @@ if(isset($_SERVER['REQUEST_METHOD']) == 'post'){
 	</div>
 	<script type="text/javascript">
 			flatpickr("#date", {});
+			flatpickr("#time", {
+				enableTime : true,
+				noCalendar : true,
+				dateFormate : "H:i"
+			});
 		$(document).ready(function() {
    			 $('#interests').select2();
 		});
